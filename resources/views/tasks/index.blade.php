@@ -13,6 +13,14 @@
       <div class="task-list-header-progress">Progress</div>
     </div>
 
+    <div class="task-list-task-buttons">
+      <a href="{{ route('tasks.create') }}">
+        <button  class="task-list-button">
+          <span class="material-icons">add</span>Add task
+        </button>
+      </a>
+    </div>
+
     @foreach ($tasks as $index => $task)
       <div class="table-body">
         <div class="table-body-task-name">
