@@ -78,4 +78,21 @@ class TaskController extends Controller
         // Code untuk melakukan redirect menuju GET /tasks
     }
 
+    public function delete($id)
+    {
+        // Menyebutkan judul dari halaman yaitu "Delete Task"
+        $pageTitle = 'Delete Task';
+        //  Memperoleh data task menggunakan $id
+        $task = Task::find($id);
+        // Menghasilkan nilai return berupa file view dengan halaman dan data task di atas 
+        return view('tasks.delete', ['pageTitle' => $pageTitle, 'task' => $task]);
+    }
+    public function destroy($id)
+    {
+        $task = Task::find($id);// Memperoleh task tertentu menggunakan $id
+        $task->delete();
+        // Melakukan redirect menuju tasks.index
+        return redirect()->route('tasks.index');
+    }
+
 }
