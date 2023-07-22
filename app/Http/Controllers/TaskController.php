@@ -30,7 +30,7 @@ class TaskController extends Controller
 
     public function create()
     {
-        $pageTitle = 'Edit Task';
+        $pageTitle = 'Create Task';
         return view('tasks.create', ['pageTitle' => $pageTitle]);
     }
 
@@ -53,6 +53,29 @@ class TaskController extends Controller
         ]);
 
         return redirect()->route('tasks.index');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate(
+            [
+                'name' => 'required',
+                'due_date' => 'required',
+                'status' => 'required',
+            ],
+            $request->all()
+        );
+        
+        $task = Task::find($id);
+        $task->update([
+            'name' => $request->name,
+            'detail' => $request->detail,
+            'due_date' => $request->due_date,
+            'status' => $request->status,
+            // data task yang berasal dari formulir
+        ]);
+        return redirect()->route('tasks.index');
+        // Code untuk melakukan redirect menuju GET /tasks
     }
 
 }
