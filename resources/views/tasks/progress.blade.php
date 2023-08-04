@@ -11,32 +11,37 @@ use App\Models\Task;
 
     <div class="task-progress-board">
       @include('partials.task_column', [
+        'status'=>'not_started',
         'title' => 'Not Started',
         'tasks' => $tasks['not_started'],
         'leftStatus' => null,
         'rightStatus' => 'in_progress',
       ])
-
+      
       @include('partials.task_column', [
+        'status'=>'in_progress',
         'title' => 'In Progress',
         'tasks' => $tasks['in_progress'],
         'leftStatus' => 'not_started',
         'rightStatus' => 'in_review',
       ])
-
+      
       @include('partials.task_column', [
+        'status'=>'in_review',
         'title' => 'In Review',
         'tasks' => $tasks['in_review'],
         'leftStatus' => 'in_progress',
         'rightStatus' => 'completed',
       ])
-
+      
       @include('partials.task_column', [
+        'status'=>'completed',
         'title' => 'Completed',
         'tasks' => $tasks['completed'],
         'leftStatus' => 'in_review',
         'rightStatus' => null,
       ])
+      
     </div>
   </div>
 @endsection

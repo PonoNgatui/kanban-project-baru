@@ -3,9 +3,16 @@
       @if ($task->status == 'completed')
         <div class="material-icons task-progress-card-top-checked">check_circle</div>
       @else
-        <div class="material-icons task-progress-card-top-check">check_circle</div>
+        <form
+          action="{{ route('tasks.complete', ['id' => $task->id, 'status' => 'completed']) }}" 
+          method="POST">
+          @method('patch')
+          @csrf
+          <button class="material-icons task-progress-card-top-check">check_circle</button>
+        </form>
       @endif
       <a href="{{ route('tasks.edit', ['id' => $task->id]) }}" class="material-icons task-progress-card-top-edit">more_vert</a>
+      
     </div>
     <p class="task-progress-card-title">{{ $task->name }}</p>
     <div>
@@ -36,5 +43,6 @@
       <button class="material-icons">chevron_right</button>
     </form>
       @endif
+      
     </div>
   </div>
