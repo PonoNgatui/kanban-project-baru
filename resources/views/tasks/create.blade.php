@@ -5,7 +5,7 @@
 @section('main')
 <div class="form-container">
     <h1 class="form-title">{{ $pageTitle }}</h1>
-    <form class="form" method="POST" action="{{ route('tasks.store') }}">
+    <form class="form" method="POST" action="{{ route('tasks.store')}}">
     @csrf
     <form class="form">
       <div class="form-item">
@@ -28,14 +28,16 @@
           <div class="alert-danger">{{ $message }}</div>
         @enderror
       </div>
-  
+      @php
+          $status = old('status',$status);
+      @endphp
       <div class="form-item">
         <label>Progress:</label>
         <select class="form-input" name="status">
-          <option @if(old('status') == 'not_started') selected @endif value="not_started">Not Started</option>
-          <option @if(old('status') == 'in_progress') selected @endif value="in_progress">In Progress</option>
-          <option @if(old('status') == 'in_review') selected @endif value="in_review">Waiting/In Review</option>
-          <option @if(old('status') == 'completed') selected @endif value="completed">Completed</option>
+          <option @if($status == 'not_started') selected @endif value="not_started">Not Started</option>
+          <option @if($status == 'in_progress') selected @endif value="in_progress">In Progress</option>
+          <option @if($status == 'in_review') selected @endif value="in_review">Waiting/In Review</option>
+          <option @if($status == 'completed') selected @endif value="completed">Completed</option>
         </select>
         @error('status')
           <div class="alert-danger">{{ $message }}</div>
