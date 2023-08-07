@@ -17,10 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home'); // Diperbarui
-})->name('home');
+})->name('home')->middleware('auth');
 
 Route::prefix('tasks')
     ->name('tasks.')
+    ->middleware('auth')
     ->controller(TaskController::class)
     ->group(function () {
         Route::get('/', 'index')->name('index');
@@ -39,9 +40,13 @@ Route::prefix('tasks')
     Route::name('auth.')
     ->controller(AuthController::class)
     ->group(function () {
+        Route::middleware('guest')->group(function () {
         Route::get('signup', 'signupForm')->name('signupForm');
         Route::post('signup', 'signup')->name('signup');
         Route::get('login', 'loginForm')->name('loginForm');
         Route::post('login', 'login')->name('login');
+    });
+        Route::middleware('auth')->group(function (){
         Route::post('logout', 'logout')->name('logout');
+        });
     });
