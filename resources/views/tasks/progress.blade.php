@@ -11,34 +11,34 @@ use App\Models\Task;
 
     <div class="task-progress-board">
       @include('partials.task_column', [
-        'status'=>'not_started',
+        'status'=>Task::STATUS_NOT_STARTED,
         'title' => 'Not Started',
-        'tasks' => $tasks['not_started'],
+        'tasks' => $tasks[Task::STATUS_NOT_STARTED],
         'leftStatus' => null,
-        'rightStatus' => 'in_progress',
+        'rightStatus' => Task::STATUS_IN_PROGRESS,
       ])
       
       @include('partials.task_column', [
-        'status'=>'in_progress',
+        'status'=>Task::STATUS_IN_PROGRESS,
         'title' => 'In Progress',
-        'tasks' => $tasks['in_progress'],
-        'leftStatus' => 'not_started',
-        'rightStatus' => 'in_review',
+        'tasks' => $tasks[Task::STATUS_IN_PROGRESS],
+        'leftStatus' => Task::STATUS_NOT_STARTED,
+        'rightStatus' => Task::STATUS_IN_REVIEW,
       ])
       
       @include('partials.task_column', [
-        'status'=>'in_review',
+        'status'=>Task::STATUS_IN_REVIEW,
         'title' => 'In Review',
-        'tasks' => $tasks['in_review'],
-        'leftStatus' => 'in_progress',
-        'rightStatus' => 'completed',
+        'tasks' => $tasks[Task::STATUS_IN_REVIEW],
+        'leftStatus' => Task::STATUS_IN_PROGRESS,
+        'rightStatus' => Task::STATUS_COMPLETED,
       ])
       
       @include('partials.task_column', [
-        'status'=>'completed',
+        'status'=>Task::STATUS_COMPLETED,
         'title' => 'Completed',
-        'tasks' => $tasks['completed'],
-        'leftStatus' => 'in_review',
+        'tasks' => $tasks[Task::STATUS_COMPLETED],
+        'leftStatus' => Task::STATUS_IN_REVIEW,
         'rightStatus' => null,
       ])
       

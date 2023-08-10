@@ -14,10 +14,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('home'); // Diperbarui
 })->name('home')->middleware('auth');
+*/
+
+Route::get('/', [TaskController::class, 'home'])
+    ->name('home')
+    ->middleware('auth');
 
 Route::prefix('tasks')
     ->name('tasks.')
