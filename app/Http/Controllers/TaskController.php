@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class TaskController extends Controller
 {
@@ -20,13 +21,6 @@ class TaskController extends Controller
         return view('tasks.index', ['pageTitle' => $pageTitle,'tasks' => $tasks]);
     }
     
-    public function edit($id)
-    {
-        $pageTitle = 'Edit Task';
-        $task = Task::find($id);
-        return view('tasks.edit', ['pageTitle' => $pageTitle, 'task' => $task]);
-    }
-
     public function create($status = null)
     {
         $pageTitle = 'Create Task';
@@ -56,6 +50,14 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
+    public function edit($id)
+    {
+        $pageTitle = 'Edit Task';
+        $task = Task::findOrFail($id);
+        Gate::authorize('update', $task);
+        return view('tasks.edit', ['pageTitle' => $pageTitle, 'task' => $task]);
+    }
+
     public function update(Request $request, $id)
     {
         $request->validate(
@@ -67,7 +69,8 @@ class TaskController extends Controller
             $request->all()
         );
         
-        $task = Task::find($id);
+        $task = Task::findOrFail($id);
+        Gate::authorize('update', $task);
         $task->update([
             'name' => $request->name,
             'detail' => $request->detail,
@@ -81,18 +84,16 @@ class TaskController extends Controller
 
     public function delete($id)
     {
-        // Menyebutkan judul dari halaman yaitu "Delete Task"
         $pageTitle = 'Delete Task';
-        //  Memperoleh data task menggunakan $id
-        $task = Task::find($id);
-        // Menghasilkan nilai return berupa file view dengan halaman dan data task di atas 
+        $task = Task::findOrFail($id);
+        Gate::authorize('delete', $task);
         return view('tasks.delete', ['pageTitle' => $pageTitle, 'task' => $task]);
     }
     public function destroy($id)
     {
-        $task = Task::find($id);// Memperoleh task tertentu menggunakan $id
+        $task = Task::findOrFail($id);
+        Gate::authorize('delete', $task);
         $task->delete();
-        // Melakukan redirect menuju tasks.index
         return redirect()->route('tasks.index');
     }
 
@@ -129,6 +130,7 @@ class TaskController extends Controller
     public function move(int $id, Request $request)
     {
         $task = Task::findOrFail($id);
+        Gate::authorize('move', $task);
 
         $task->update([
             'status' => $request->status,
@@ -140,6 +142,7 @@ class TaskController extends Controller
     public function complete(int $id, Request $request)
     {
         $task = Task::findOrFail($id);
+        Gate::authorize('complete', $task);
 
         $task->update([
             'status' => $request->status,
@@ -151,6 +154,7 @@ class TaskController extends Controller
     public function completeList(int $id, Request $request)
     {
         $task = Task::findOrFail($id);
+        Gate::authorize('complete', $task);
 
         $task->update([
             'status' => $request->status,

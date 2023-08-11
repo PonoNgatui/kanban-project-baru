@@ -144,6 +144,11 @@ body {
     width: 15%;
 }
 
+.table-body-links {
+    width: 10%;
+    padding: 16px;
+  }
+
 .table-body {
     display: flex;
     align-items: center;
@@ -333,3 +338,5 @@ body {
     width: 15%;
     padding: 16px;
   }
+
+  
