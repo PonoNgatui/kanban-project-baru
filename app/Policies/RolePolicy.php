@@ -3,9 +3,8 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Task;
 
-class TaskPolicy
+class RolePolicy
 {
     protected function getUserPermissions($user)
     {
@@ -18,50 +17,47 @@ class TaskPolicy
             ->pluck('name');
     }
 
-    public function viewAnyTask($user)
+    public function viewAnyRole($user)
     {
         $permissions = $this->getUserPermissions($user);
 
-        if ($permissions->contains('view-any-tasks')) {
+        if ($permissions->contains('view-any-roles')) {
             return true;
         }
 
         return false;
     }
 
-    public function performAsTaskOwner($user, $task)
-    {
-        return $user->id == $task->user_id;
-    }
-
-    public function updateAnyTask($user)
+    public function createNewRole($user)
     {
         $permissions = $this->getUserPermissions($user);
 
-        if ($permissions->contains('update-any-tasks')) {
+        if ($permissions->contains('create-new-roles')) {
             return true;
         }
 
         return false;
     }
 
-    public function deleteAnyTask($user)
+    public function updateAnyRole($user)
     {
         $permissions = $this->getUserPermissions($user);
 
-        if ($permissions->contains('delete-any-tasks')) {
+        if ($permissions->contains('update-any-roles')) {
             return true;
         }
 
         return false;
     }
 
-    public function before($user)
+    public function deleteAnyRole($user)
     {
-        if ($user->role && $user->role->name == 'admin') {
+        $permissions = $this->getUserPermissions($user);
+
+        if ($permissions->contains('delete-any-roles')) {
             return true;
         }
 
-        return null;
+        return false;
     }
 }

@@ -14,15 +14,19 @@
       <p class="sidebar-text">Task Progress</p>
     </a>  
 
+    @canany(['viewUserRole'], App\Models\User::class)
     <a class="sidebar-link" href="{{ route('users.index') }}">
       <span class="material-icons sidebar-icon">group</span>
       <p class="sidebar-text">Users</p>
     </a>
+    @endcan
 
+    @canany(['viewAnyRole'], App\Models\Role::class)
     <a class="sidebar-link" href="{{ route('roles.index') }}">
       <span class="material-icons sidebar-icon">settings</span>
       <p class="sidebar-text">Roles</p>
     </a>
+    @endcan
 
     @if (Auth::check())
       <a class="sidebar-link" href=""

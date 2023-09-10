@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -23,7 +24,7 @@ class UserController extends Controller
         $pageTitle = 'Edit User Role';
         $user = User::findOrFail($id);
         $roles = Role::all();
-
+        Gate::authorize('updateUserRole', User::class);
         return view('users.edit_role', [
             'pageTitle' => $pageTitle,
             'user' => $user,
@@ -37,7 +38,7 @@ class UserController extends Controller
         $user->update([
             'role_id' => $request->role_id,
         ]);
-
+        Gate::authorize('updateUserRole', User::class);
         return redirect()->route('users.index');
     }
 }

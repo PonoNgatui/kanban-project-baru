@@ -19,9 +19,11 @@
               {{ $user->role ? $user->role->name : 'No Role'}}
           </div>
           <div class="table-body-links">
+            @canany(['updateUserRole'], $user)
             <a href="{{ route('users.editRole', ['id' => $user->id]) }}">
               Edit Role
             </a>
+            @endcan
           </div>
         </div>
       @endforeach
