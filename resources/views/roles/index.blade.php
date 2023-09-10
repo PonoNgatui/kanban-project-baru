@@ -5,6 +5,7 @@
 @section('main')
   <div class="task-list-container">
     <h1 class="task-list-heading">{{ $pageTitle }}</h1>
+    @canany(['createNewRole'], App\Models\Role::class)
     <div class="task-list-task-buttons">
       <a href="{{ route('roles.create') }}">
         <button  class="task-list-button">
@@ -12,6 +13,7 @@
         </button>
       </a>
     </div>
+    @endcan
 
     <div>
       <div class="task-list-table-head">
@@ -34,8 +36,12 @@
           </ul>
         </div>
         <div class="table-body-links">
+          @canany(['updateAnyRole'], $role)
           <a href="{{ route('roles.edit', ['id' => $role->id]) }}">Edit</a>
+          @endcan
+          @canany(['deleteAnyRole'], $role)
           <a href="{{ route('roles.delete', ['id' => $role->id]) }}">Delete</a>
+          @endcan
         </div>
         </div>
       @endforeach

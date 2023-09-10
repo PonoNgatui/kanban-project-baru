@@ -357,4 +357,17 @@ body {
     padding: 4px 0;
   }
 
+  .table-body-user-name {
+    width: 15%;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    overflow-wrap: anywhere;
+  }
+  
+  .table-body-user-role {
+    width: 30%;
+    padding: 16px;
+  }
+
   
