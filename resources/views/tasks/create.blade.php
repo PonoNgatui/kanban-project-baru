@@ -5,7 +5,7 @@
 @section('main')
 <div class="form-container">
     <h1 class="form-title">{{ $pageTitle }}</h1>
-    <form class="form" method="POST" action="{{ route('tasks.store')}}">
+    <form class="form" method="POST" action="{{ route('tasks.store')}}" enctype="multipart/form-data">
     @csrf
     <form class="form">
       <div class="form-item">
@@ -40,6 +40,14 @@
           <option @if($status == 'completed') selected @endif value="completed">Completed</option>
         </select>
         @error('status')
+          <div class="alert-danger">{{ $message }}</div>
+        @enderror
+      </div>
+      <div class="form-item">
+        <label>File:</label>
+        <input class="form-input" type="file" value="{{ old('file') }}" name="file">
+
+        @error('file')
           <div class="alert-danger">{{ $message }}</div>
         @enderror
       </div>
