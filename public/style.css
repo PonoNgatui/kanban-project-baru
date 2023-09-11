@@ -144,10 +144,25 @@ body {
     width: 15%;
 }
 
+.task-list-header-file {
+    padding: 16px;
+    width: 15%;
+}
+
+.task-list-header-owner-name {
+    padding: 16px;
+    width: 15%;
+}
+
+.task-list-header-links {
+    padding: 16px;
+    width: 10%;
+  }
+
 .table-body-links {
     width: 10%;
     padding: 16px;
-  }
+}
 
 .table-body {
     display: flex;
@@ -183,6 +198,21 @@ body {
     width: 15%;
     padding: 16px;
     border-right: 1px solid #d8d8d8;
+}
+
+.table-body-files {
+    width: 15%;
+    padding: 16px;
+    border-right: 1px solid #d8d8d8;
+}
+
+.table-body-owner-name {
+    width: 15%;
+    padding: 16px;
+  }
+
+.table-body-links {
+    width: 10%;
 }
 
 .menu-icon {
@@ -269,35 +299,35 @@ body {
 }
 
 .task-progress-board {
-    display: flex;
-    justify-content: space-around;
+   display: flex;
+   justify-content: space-around;
   }
   
-  .task-progress-column {
-    width: 22%;
-  }
+.task-progress-column {
+   width: 22%;
+}
   
-  .task-progress-column-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 4px;
-  }
+.task-progress-column-heading {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0px 4px;
+}
   
-  .task-progress-card {
-    background-color: rgb(199, 239, 208);
-    border-radius: 12px;
-    padding: 24px;
-    margin: 12px 0px;
-    font-size: 20px;
-    overflow-wrap: anywhere;
-    position: relative;
-  }
+.task-progress-card {
+  background-color: rgb(199, 239, 208);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 12px 0px;
+  font-size: 20px;
+  overflow-wrap: anywhere;
+  position: relative;
+}
   
-  .task-progress-card-left {
-    display: flex;
-    justify-content: space-between;
-  }
+.task-progress-card-left {
+  display: flex;
+  justify-content: space-between;
+}
   
   .task-progress-card-right {
     display: flex;
@@ -327,16 +357,6 @@ body {
   
   .task-progress-card-title {
     font-size: 30px;
-  }
-
-  .task-list-header-owner-name {
-    padding: 16px;
-    width: 15%;
-  }
-
-  .table-body-owner-name {
-    width: 15%;
-    padding: 16px;
   }
 
   .table-body-role-name {
@@ -369,5 +389,37 @@ body {
     width: 30%;
     padding: 16px;
   }
+
+  .uploaded-files {
+    padding: 0 50px;
+  }
+  
+  .uploaded-files-title {
+    color: rgb(85, 200, 159);
+  }
+  
+  .uploaded-file {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+    padding: 12px;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+  }
+  
+  .uploaded-file span {
+    color: #333;
+  }
+
+  .task-progress-card-file {
+    display: flex;
+    align-items: center;
+    background-color: #e9ffee;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  
 
   
