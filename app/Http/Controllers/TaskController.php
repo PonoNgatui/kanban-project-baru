@@ -29,7 +29,7 @@ class TaskController extends Controller
         return view('tasks.create', ['pageTitle' => $pageTitle,'status' => $status]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $task)
     {
         $request->validate(
             [
